@@ -655,7 +655,7 @@ h3 { font-size: 1.8em; }
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #0b45c4;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -681,7 +681,7 @@ h3 { font-size: 1.8em; }
     text-align: center;
     font-size: 0.9em;
     color: var(--text-color);
-    background-color: #2b7871;
+    background-color: #e6fffd;
     padding: 8px;
     border-radius: 4px;
     margin-bottom: 15px;
