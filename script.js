@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginTabs = document.querySelectorAll('.login-tab');
     const loginPanels = document.querySelectorAll('.login-form-panel');
     const statusMessage = document.getElementById('login-status-message');
-    const heroImages = document.querySelectorAll('.hero-image'); // New: For dynamic background
+    const heroImages = document.querySelectorAll('.hero-image'); // For dynamic background
 
     // Login forms
     const personalLoginForm = document.getElementById('personal-login-form');
@@ -31,11 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { statusMessage.textContent = ''; }, 4000);
     };
 
-    // --- DYNAMIC BACKGROUND CAROUSEL LOGIC ---
+    // --- 1. DYNAMIC BACKGROUND CAROUSEL LOGIC ---
     let currentImageIndex = 0;
     
     const startImageCarousel = () => {
         if (heroImages.length === 0) return;
+
+        // Ensure the first image is active when starting
+        heroImages[0].classList.add('active-bg');
 
         setInterval(() => {
             // Remove active class from current image
@@ -46,14 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add active class to new current image
             heroImages[currentImageIndex].classList.add('active-bg');
-        }, 5000); // Change image every 5 seconds (5000 milliseconds)
+        }, 5000); // Change image every 5 seconds
     };
     
-    startImageCarousel(); // Start the cycle immediately
+    startImageCarousel(); 
 
-    // --- EVENT HANDLERS ---
+    // --- 2. MODAL AND LOGIN HANDLERS ---
 
-    // 1. Modal Control
+    // Modal Control
     showModalBtn.addEventListener('click', (e) => {
         e.preventDefault();
         loginModal.classList.remove('hidden');
@@ -72,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Tab Switching
+    // Tab Switching
     loginTabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const targetType = tab.getAttribute('data-type');
@@ -88,14 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Personal Login Submission (SIMULATION)
+    // Personal Login Submission (SIMULATION)
     personalLoginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const username = document.getElementById('p-username').value;
         const password = document.getElementById('p-password').value;
 
         if (username === ACCOUNTS.personal.username && password === ACCOUNTS.personal.password) {
-            displayLoginMessage('🎉 Personal Login Successful! Redirecting to Dashboard...', true);
+            displayLoginMessage('🎉 Personal Login Successful! Redirecting...', true);
             setTimeout(() => {
                 loginModal.classList.add('hidden');
                 personalLoginForm.reset();
@@ -106,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. Corporate Login Submission (SIMULATION)
+    // Corporate Login Submission (SIMULATION)
     corporateLoginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const corpId = document.getElementById('c-corp-id').value;
@@ -124,14 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // 5. General Utility & Navigation (Scrolling, etc.)
+    // 3. NAVIGATION AND SMOOTH SCROLLING HANDLERS
     
     // Smooth Scrolling for Navigation
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             if (link.hash !== '') {
                 if (link.classList.contains('btn-login')) {
-                    return;
+                    return; // Skip scrolling for login button
                 }
 
                 e.preventDefault();
@@ -158,7 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerHeight = header.offsetHeight;
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - headerHeight - 1; 
+            // Adjust offset to trigger active state before reaching the top edge
+            const sectionTop = section.offsetTop - headerHeight - 50; 
             const sectionHeight = section.clientHeight;
             if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
                 current = section.getAttribute('id');
