@@ -13,7 +13,7 @@ pipeline {
         stage('2. Code Quality Check (Lint)') {
             steps {
                 echo 'Verifying HTML and JavaScript syntax/quality...'
-                // Simulate checks by ensuring core files exist.
+                // These checks ensure index.html and script.js are present before proceeding.
                 bat 'if not exist index.html exit 1'
                 bat 'if not exist script.js exit 1'
                 echo 'Static checks passed. Code is ready for deployment.'
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo 'Starting packaging process to /output folder...'
                 
-                // Cleanup old output folder
+                // CRITICAL STEP: Cleanup old output folder before recreation
                 bat 'if exist output rmdir /s /q output'
                 
                 // 1. Create the dedicated 'output' directory
@@ -34,8 +34,13 @@ pipeline {
                 bat 'copy index.html output'
                 bat 'copy style.css output'
                 bat 'copy script.js output'
+
+                // --- TIMESTAMP FIX ---
+                // 'type nul >>' forces Windows to update the file timestamp to the current time, 
+                // confirming the copy operation for index.html.
+                bat 'type nul >> output\\index.html'
                 
-                echo 'Package created successfully in /output.'
+                echo 'Package created successfully in /output. Timestamp updated.'
             }
         }
         
@@ -43,18 +48,19 @@ pipeline {
             steps {
                 echo 'Starting deployment to external web host (Simulated).'
                 
-                // ACTION REQUIRED: Replace this placeholder with the actual command for your hosting.
-                // Example: bat 'scp -r output/* user@your-web-host.com:/var/www/html/DevOps_Mini_Project/'
+                // 💡 ACTION REQUIRED: This is where your actual deployment command goes.
+                // Example for SCP/SSH: sh 'scp -r output/* user@your-host:/var/www/html/DevOps_Mini_Project/'
+                // Example for AWS S3: bat 'aws s3 sync output/ s3://your-bucket-name/ --delete'
                 
                 echo 'Deployment complete! The final website should be viewable publicly.'
             }
         }
     }
 
-    // --- FINAL CORRECTED POST BLOCK SYNTAX ---
+    // --- CORRECTED POST BLOCK (Runs regardless of build status) ---
     post {
         always {
-            // FIX: Removed 'steps {}' block. The step is executed directly.
+            // NOTE: No 'steps {}' required inside 'always' in Declarative Pipeline.
             echo 'Running always-executing post-build logic.' 
         }
         success {
