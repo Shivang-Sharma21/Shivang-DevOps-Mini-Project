@@ -217,6 +217,7 @@ h3 { font-size: 1.8em; }
     text-align: center;
 }
 
+/* DYNAMIC BACKGROUND STYLES */
 .hero-image {
     position: absolute;
     top: 0;
@@ -225,6 +226,12 @@ h3 { font-size: 1.8em; }
     height: 100%;
     object-fit: cover;
     z-index: -2;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 1.5s ease-in-out; /* Fade transition */
+}
+
+.hero-image.active-bg {
+    opacity: 1; /* Only active image is visible */
 }
 
 .hero-overlay {
@@ -333,7 +340,7 @@ h3 { font-size: 1.8em; }
 .loan-card .interest-rate {
     font-size: 1.2em;
     font-weight: bold;
-    color: var(--danger-color); /* To highlight rates */
+    color: #dc3545; /* To highlight rates */
     margin-bottom: 20px;
 }
 .loan-card .btn {
@@ -565,6 +572,138 @@ h3 { font-size: 1.8em; }
     color: var(--accent-color);
 }
 
+/* --- Modal Styles --- */
+.modal {
+    position: fixed;
+    z-index: 2000; /* Above everything else */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-button {
+    color: var(--light-text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #dc3545; /* Use danger color for close button hover */
+    text-decoration: none;
+}
+
+/* --- Login Tabs --- */
+.tab-container {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--bg-light);
+}
+
+.login-tab {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    padding: 12px 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--light-text-color);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s, border-bottom 0.3s;
+    text-align: center;
+}
+
+.login-tab.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+/* --- Login Forms --- */
+.login-form-panel h3 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.login-form-panel input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-form-panel button {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.forgot-link {
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.login-hint {
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--text-color);
+    background-color: #e6f0ff;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.message {
+    font-size: 0.95em;
+    border-radius: 5px;
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.hidden {
+    display: none;
+}
+
 /* --- Responsive Design --- */
 @media (max-width: 992px) {
     .hero-content h1 { font-size: 3em; }
@@ -575,7 +714,7 @@ h3 { font-size: 1.8em; }
 @media (max-width: 768px) {
     .main-nav ul {
         flex-direction: column;
-        display: none; /* Hide nav for mobile, could add a hamburger menu with JS */
+        display: none; 
     }
     .header-content {
         flex-direction: column;
