@@ -1,65 +1,76 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff; /* Light sky blue background */
     color: #333;
     margin: 0;
+    padding: 0;
     text-align: center;
 }
 
 header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px 0;
+    background: linear-gradient(to right, #ff9933, #ffffff, #138808); /* Indian flag colors */
+    color: #333;
+    padding: 25px 0;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     margin: 0;
+    font-size: 2.5em;
+    color: #1a2a6c; /* Deep blue heading */
 }
 
-.carousel-container {
-    width: 80%;
+.content-box {
+    background-color: white;
+    padding: 30px;
+    margin: 20px auto;
+    width: 85%;
     max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-#dynamicImage {
+#dynamic-image {
     width: 100%;
-    max-width: 600px; 
     height: auto;
-    border: 5px solid #007bff;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    transition: transform 0.5s; /* Added smooth transition */
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 3px solid #007bff;
 }
 
-#dynamicImage:hover {
-    transform: scale(1.02);
-}
-
-button {
-    background-color: #28a745;
+#change-image-btn {
+    background-color: #e91e63; /* Pink accent */
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border-radius: 30px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.1s;
 }
 
-button:hover {
-    background-color: #1e7e34;
+#change-image-btn:hover {
+    background-color: #c2185b;
+    transform: scale(1.05);
+}
+
+.info-section {
+    background-color: #eaf7ff;
+    padding: 15px;
+    margin: 30px auto;
+    width: 85%;
+    max-width: 800px;
+    border-left: 5px solid #007bff;
+    text-align: left;
 }
 
 footer {
-    padding: 10px 0;
+    padding: 15px 0;
+    margin-top: 40px;
     background-color: #333;
     color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    font-size: 0.9em;
 }
