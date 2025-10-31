@@ -54,9 +54,9 @@ pipeline {
     // --- CORRECTED POST BLOCK ---
     post {
         always {
-            steps { // <--- FIX: Added steps block
-                // Placeholder step to satisfy Jenkins's structural requirement
-                script { /* Clean up or other always-run logic can go here */ } 
+            steps { 
+                // FIX: Replaced the ambiguous comment with a simple echo step to satisfy Groovy.
+                echo 'Running always-executing post-build logic.' 
             }
         }
         success {
