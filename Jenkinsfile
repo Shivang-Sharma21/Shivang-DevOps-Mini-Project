@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo 'Starting packaging process to /output folder...'
                 
-                // Cleanup old output folder (Crucial)
+                // Cleanup old output folder
                 bat 'if exist output rmdir /s /q output'
                 
                 // 1. Create the dedicated 'output' directory
@@ -51,13 +51,11 @@ pipeline {
         }
     }
 
-    // --- CORRECTED POST BLOCK ---
+    // --- FINAL CORRECTED POST BLOCK SYNTAX ---
     post {
         always {
-            steps { 
-                // FIX: Replaced the ambiguous comment with a simple echo step to satisfy Groovy.
-                echo 'Running always-executing post-build logic.' 
-            }
+            // FIX: Removed 'steps {}' block. The step is executed directly.
+            echo 'Running always-executing post-build logic.' 
         }
         success {
             echo 'Pipeline finished successfully! Website is ready for viewing.'
