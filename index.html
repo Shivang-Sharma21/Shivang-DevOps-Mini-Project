@@ -3,30 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incredible India - Shivang Sharma DevOps Project</title>
+    <title>Simple Bank Manager</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Incredible India: Your Gateway to Adventure</h1>
-        <p>A Mini-Project Deployed Automatically via Jenkins by **Shivang Sharma**</p>
-    </header>
+    <main class="container">
+        <section id="login-section" class="card">
+            <h2>Bank Login</h2>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Username (user)" required>
+                <input type="password" id="password" placeholder="Password (pass)" required>
+                <button type="submit">Login</button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+        </section>
 
-    <div class="content-box">
-        <h2>Featured Destination: The Taj Mahal</h2>
-        <img id="dynamic-image" src="https://picsum.photos/id/65/600/400" alt="Beautiful Taj Mahal at Sunrise">
-        <p>Click below to discover another must-see landmark!</p>
-        <button id="change-image-btn">Discover Next Landmark!</button>
-    </div>
+        <section id="dashboard-section" class="card hidden">
+            <header>
+                <h2>Welcome, <span id="account-name">User</span>!</h2>
+                <button id="logout-btn" class="secondary-btn">Logout</button>
+            </header>
+            
+            <div class="balance-info">
+                <h3>Current Balance</h3>
+                <p id="current-balance">$0.00</p>
+            </div>
 
-    <div class="info-section">
-        <h3>About This Project</h3>
-        <p>This entire website (HTML, CSS, JS) is managed in **GitHub** and deployed instantly to our server using **Jenkins CI/CD Pipeline**, demonstrating process automation.</p>
-    </div>
+            <div class="actions">
+                <div class="action-box">
+                    <h3>Deposit Funds</h3>
+                    <form id="deposit-form">
+                        <input type="number" id="deposit-amount" placeholder="Amount" min="0.01" step="0.01" required>
+                        <button type="submit" class="deposit-btn">Deposit</button>
+                        <p id="deposit-msg" class="message"></p>
+                    </form>
+                </div>
 
-    <footer>
-        <p>&copy; 2025 Shivang Sharma. CI/CD Tourism Demo.</p>
-    </footer>
+                <div class="action-box">
+                    <h3>Withdraw Funds</h3>
+                    <form id="withdraw-form">
+                        <input type="number" id="withdraw-amount" placeholder="Amount" min="0.01" step="0.01" required>
+                        <button type="submit" class="withdraw-btn">Withdraw</button>
+                        <p id="withdraw-msg" class="message"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>

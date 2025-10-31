@@ -1,76 +1,162 @@
+:root {
+    --primary-color: #0056b3;
+    --secondary-color: #f8f9fa;
+    --text-color: #333;
+    --bg-color: #e9ecef;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f8ff; /* Light sky blue background */
-    color: #333;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+}
+
+.card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* --- Typography & Headings --- */
+h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+/* --- Forms & Inputs --- */
+#login-form input,
+.action-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Important for padding/border inclusion */
+}
+
+/* --- Buttons --- */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #004494;
+}
+
+.secondary-btn {
+    background-color: #6c757d;
+    width: auto;
+}
+
+.secondary-btn:hover {
+    background-color: #5a6268;
+}
+
+.deposit-btn {
+    background-color: var(--success-color);
+}
+.deposit-btn:hover {
+    background-color: #1e7e34;
+}
+
+.withdraw-btn {
+    background-color: var(--danger-color);
+}
+.withdraw-btn:hover {
+    background-color: #bd2130;
+}
+
+/* --- Dashboard Specific Styles --- */
+#dashboard-section header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.balance-info {
+    text-align: center;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+#current-balance {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 10px 0 0;
+}
+
+.actions {
+    display: flex;
+    gap: 20px;
+}
+
+.action-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* --- Utility Classes --- */
+.hidden {
+    display: none;
+}
+
+.error-message {
+    color: var(--danger-color);
+    margin-top: 10px;
     text-align: center;
 }
 
-header {
-    background: linear-gradient(to right, #ff9933, #ffffff, #138808); /* Indian flag colors */
-    color: #333;
-    padding: 25px 0;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    margin: 0;
-    font-size: 2.5em;
-    color: #1a2a6c; /* Deep blue heading */
-}
-
-.content-box {
-    background-color: white;
-    padding: 30px;
-    margin: 20px auto;
-    width: 85%;
-    max-width: 800px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-#dynamic-image {
-    width: 100%;
-    height: auto;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border: 3px solid #007bff;
-}
-
-#change-image-btn {
-    background-color: #e91e63; /* Pink accent */
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1.1em;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.1s;
-}
-
-#change-image-btn:hover {
-    background-color: #c2185b;
-    transform: scale(1.05);
-}
-
-.info-section {
-    background-color: #eaf7ff;
-    padding: 15px;
-    margin: 30px auto;
-    width: 85%;
-    max-width: 800px;
-    border-left: 5px solid #007bff;
-    text-align: left;
-}
-
-footer {
-    padding: 15px 0;
-    margin-top: 40px;
-    background-color: #333;
-    color: white;
+.message {
     font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.message.success {
+    color: var(--success-color);
+}
+
+.message.error {
+    color: var(--danger-color);
+}
+
+/* Responsive adjustment */
+@media (max-width: 500px) {
+    .actions {
+        flex-direction: column;
+    }
 }
