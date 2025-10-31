@@ -31,45 +31,44 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { statusMessage.textContent = ''; }, 4000);
     };
 
-    // --- 1. DYNAMIC BACKGROUND CAROUSEL LOGIC ---
+    // --- 1. FIX FOR DYNAMIC BACKGROUND CAROUSEL ---
     let currentImageIndex = 0;
     
     const startImageCarousel = () => {
-        if (heroImages.length === 0) {
-            console.warn("No hero images found for carousel.");
-            return;
-        }
+        if (heroImages.length === 0) return;
 
-        // --- Core Carousel Logic ---
+        // Ensure ONLY the first image has the active class initially (CSS handles opacity 1)
+        heroImages.forEach((img, index) => {
+            img.classList.remove('active-bg');
+            if (index === 0) {
+                img.classList.add('active-bg');
+            }
+        });
+
         setInterval(() => {
-            // 1. Remove active class from current image
             heroImages[currentImageIndex].classList.remove('active-bg');
-
-            // 2. Move to next image (loop back to 0 if at the end)
             currentImageIndex = (currentImageIndex + 1) % heroImages.length;
-
-            // 3. Add active class to new current image
             heroImages[currentImageIndex].classList.add('active-bg');
         }, 5000); // Change image every 5 seconds
     };
     
-    // Call carousel start inside DOMContentLoaded to ensure elements exist
     startImageCarousel(); 
 
-    // --- 2. MODAL AND LOGIN HANDLERS ---
+    // --- 2. LOGIN MODAL FUNCTIONALITY ---
 
-    // Modal Control
+    // Show Modal
     showModalBtn.addEventListener('click', (e) => {
         e.preventDefault();
         loginModal.classList.remove('hidden');
     });
 
+    // Hide Modal (Close button)
     closeModalBtn.addEventListener('click', () => {
         loginModal.classList.add('hidden');
         statusMessage.textContent = ''; 
     });
 
-    // Close modal if user clicks outside the content
+    // Hide Modal (Click outside)
     window.addEventListener('click', (e) => {
         if (e.target === loginModal) {
             loginModal.classList.add('hidden');
@@ -77,16 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Tab Switching
+    // Tab Switching (Personal/Corporate)
     loginTabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const targetType = tab.getAttribute('data-type');
             
-            // Deactivate all tabs and panels
             loginTabs.forEach(t => t.classList.remove('active'));
             loginPanels.forEach(p => p.classList.add('hidden'));
 
-            // Activate current tab and panel
             tab.classList.add('active');
             document.getElementById(`${targetType}-login-form`).classList.remove('hidden');
             statusMessage.textContent = ''; 
@@ -129,19 +126,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // 3. NAVIGATION AND SMOOTH SCROLLING HANDLERS
+    // 3. NAVIGATION (SMOOTH SCROLLING) AND UTILITY ---
     
-    // Smooth Scrolling for Navigation
+    // Smooth Scrolling & Active State Logic (Ensures links scroll to sections)
+    const sections = document.querySelectorAll('section');
+    
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            if (link.hash !== '') {
-                if (link.classList.contains('btn-login')) {
-                    return; // Skip scrolling for login button
-                }
-
+            if (link.hash && !link.classList.contains('btn-login')) {
                 e.preventDefault();
-                const targetId = link.hash;
-                const targetSection = document.querySelector(targetId);
+                const targetSection = document.querySelector(link.hash);
 
                 if (targetSection) {
                     const headerHeight = header.offsetHeight;
@@ -152,18 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         behavior: 'smooth'
                     });
                 }
+            } else if (link.getAttribute('href') === '#') {
+                e.preventDefault();
             }
         });
     });
 
-    // Highlight active nav link on scroll
-    const sections = document.querySelectorAll('section');
     window.addEventListener('scroll', () => {
-        let current = '';
+        let current = 'home';
         const headerHeight = header.offsetHeight;
 
         sections.forEach(section => {
-            // Adjust offset to trigger active state before reaching the top edge
             const sectionTop = section.offsetTop - headerHeight - 50; 
             const sectionHeight = section.clientHeight;
             if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
@@ -172,27 +165,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         navLinks.forEach(link => {
-            // Exclude the login button from the active state logic
             if (!link.classList.contains('btn-login')) {
                 link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
+                if (link.getAttribute('href') && link.getAttribute('href').includes(current)) {
                     link.classList.add('active');
                 }
             }
         });
     });
 
-    // Set initial active state for Home link
-    const homeLink = document.querySelector('.main-nav ul li a[href="#home"]');
-    if (homeLink) {
-        homeLink.classList.add('active');
-    }
-
-    // Add alerts for non-functional links
+    // Add alerts for simulated links
     document.querySelectorAll('a[href="#"], button:not([data-type], .login-tab, .close-button, .btn-secondary, .btn-login)').forEach(el => {
         el.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Functionality is simulated or requires redirection to a dedicated portal.');
+            // Check if it's the Apply Now button in the loan grid to avoid double alert
+            if (el.classList.contains('btn-primary-outline') || el.classList.contains('btn-outline')) {
+                 e.preventDefault();
+                 alert('Functionality is simulated or requires redirection to a dedicated portal.');
+            }
         });
     });
 });
