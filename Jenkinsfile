@@ -13,7 +13,7 @@ pipeline {
         stage('2. Code Quality Check (Lint)') {
             steps {
                 echo 'Verifying HTML and JavaScript syntax/quality...'
-                // These checks ensure index.html and script.js are present before proceeding.
+                // Ensures critical files exist before starting packaging.
                 bat 'if not exist index.html exit 1'
                 bat 'if not exist script.js exit 1'
                 echo 'Static checks passed. Code is ready for deployment.'
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo 'Starting packaging process to /output folder...'
                 
-                // CRITICAL STEP: Cleanup old output folder before recreation
+                // CRITICAL STEP: Clean up old output folder before recreation
                 bat 'if exist output rmdir /s /q output'
                 
                 // 1. Create the dedicated 'output' directory
@@ -35,10 +35,10 @@ pipeline {
                 bat 'copy style.css output'
                 bat 'copy script.js output'
 
-                // --- TIMESTAMP FIX ---
-                // 'type nul >>' forces Windows to update the file timestamp to the current time, 
-                // confirming the copy operation for index.html.
-                bat 'type nul >> output\\index.html'
+                // --- GUARANTEED TIMESTAMP FIX (Windows Batch) ---
+                // This command modifies the timestamp of index.html to the current time, 
+                // confirming the copy operation and fixing the issue you observed.
+                bat 'copy /b output\\index.html +,, output\\index.html'
                 
                 echo 'Package created successfully in /output. Timestamp updated.'
             }
@@ -48,9 +48,8 @@ pipeline {
             steps {
                 echo 'Starting deployment to external web host (Simulated).'
                 
-                // 💡 ACTION REQUIRED: This is where your actual deployment command goes.
-                // Example for SCP/SSH: sh 'scp -r output/* user@your-host:/var/www/html/DevOps_Mini_Project/'
-                // Example for AWS S3: bat 'aws s3 sync output/ s3://your-bucket-name/ --delete'
+                // 💡 ACTION REQUIRED: Replace this placeholder with your actual hosting command.
+                // This is the step that transfers the files out of Jenkins and onto a public server.
                 
                 echo 'Deployment complete! The final website should be viewable publicly.'
             }
@@ -58,9 +57,9 @@ pipeline {
     }
 
     // --- CORRECTED POST BLOCK (Runs regardless of build status) ---
+    // The syntax is simplified to follow the Jenkins Declarative Post Block rules.
     post {
         always {
-            // NOTE: No 'steps {}' required inside 'always' in Declarative Pipeline.
             echo 'Running always-executing post-build logic.' 
         }
         success {
