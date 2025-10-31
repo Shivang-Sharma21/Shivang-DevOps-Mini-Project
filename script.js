@@ -35,23 +35,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentImageIndex = 0;
     
     const startImageCarousel = () => {
-        if (heroImages.length === 0) return;
+        if (heroImages.length === 0) {
+            console.warn("No hero images found for carousel.");
+            return;
+        }
 
-        // Ensure the first image is active when starting
-        heroImages[0].classList.add('active-bg');
-
+        // --- Core Carousel Logic ---
         setInterval(() => {
-            // Remove active class from current image
+            // 1. Remove active class from current image
             heroImages[currentImageIndex].classList.remove('active-bg');
 
-            // Move to next image (loop back to 0 if at the end)
+            // 2. Move to next image (loop back to 0 if at the end)
             currentImageIndex = (currentImageIndex + 1) % heroImages.length;
 
-            // Add active class to new current image
+            // 3. Add active class to new current image
             heroImages[currentImageIndex].classList.add('active-bg');
         }, 5000); // Change image every 5 seconds
     };
     
+    // Call carousel start inside DOMContentLoaded to ensure elements exist
     startImageCarousel(); 
 
     // --- 2. MODAL AND LOGIN HANDLERS ---
