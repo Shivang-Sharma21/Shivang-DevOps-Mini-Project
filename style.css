@@ -1,257 +1,608 @@
+/* --- Global Styles & Variables --- */
 :root {
-    --primary-color: #0056b3;
-    --secondary-color: #6c757d;
+    --primary-color: #004085; /* Deep Blue */
+    --secondary-color: #0056b3; /* Lighter Blue */
+    --accent-color: #f0ad4e; /* Gold/Orange for highlights */
     --text-color: #333;
-    --bg-color: #e9ecef;
-    --success-color: #28a745;
-    --danger-color: #dc3545;
-    --info-color: #17a2b8;
+    --light-text-color: #666;
+    --bg-light: #f8f9fa;
+    --bg-dark: #212529;
+    --white: #fff;
+    --shadow-light: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-medium: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
     color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
-.main-header {
-    width: 100%;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: var(--white);
 }
 
 .container {
-    width: 95%;
-    max-width: 900px;
-    margin: 20px auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.card {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.section-padding {
+    padding: 80px 0;
 }
 
-/* --- Login & Forms --- */
-#login-section h2 {
+.bg-light { background-color: var(--bg-light); }
+.bg-dark { background-color: var(--bg-dark); }
+.text-white { color: var(--white); }
+.primary-text { color: var(--primary-color); }
+.text-center { text-align: center; }
+.mt-4 { margin-top: 40px; }
+
+h1, h2, h3, h4 {
     color: var(--primary-color);
-    margin-top: 0;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    font-weight: 600;
+}
+
+h1 { font-size: 3.5em; }
+h2 { font-size: 2.5em; }
+h3 { font-size: 1.8em; }
+
+.section-title {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 15px;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--light-text-color);
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
     border-radius: 5px;
-    box-sizing: border-box;
     font-size: 1em;
-}
-
-button {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    width: 100%;
+    font-weight: 500;
+    border: 2px solid transparent;
 }
 
-button:hover {
-    background-color: #004494;
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: #e09f2a;
+    color: var(--primary-color);
 }
 
-.secondary-btn {
+.btn-secondary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+.btn-secondary:hover {
     background-color: var(--secondary-color);
-    width: auto;
 }
 
-.secondary-btn:hover {
-    background-color: #5a6268;
+.btn-outline {
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
-/* --- Dashboard Header --- */
-.dashboard-header {
+.btn-primary-outline {
+    background-color: transparent;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+.btn-primary-outline:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.btn-login {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    box-shadow: var(--shadow-light);
+}
+.btn-login:hover {
+    background-color: var(--bg-light);
+}
+
+/* --- Header & Navigation --- */
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 15px 0;
+    box-shadow: var(--shadow-medium);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
 }
 
-.dashboard-header h2 {
-    color: var(--primary-color);
-    margin: 0;
-    border: none;
-}
-
-/* --- Summary Grid --- */
-.summary-grid {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.balance-info, .account-details {
-    flex: 1;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.balance-info {
-    background-color: #e6f0ff; /* Light Blue */
-    border: 1px solid var(--primary-color);
-}
-
-.account-details {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-}
-
-.balance-info h3, .account-details h3 {
-    margin-top: 0;
-    color: var(--primary-color);
-}
-
-#current-balance {
-    font-size: 2.2em;
+.logo {
+    font-size: 1.8em;
     font-weight: bold;
-    color: var(--primary-color);
-    margin: 5px 0 0;
-}
-
-/* --- Navigation --- */
-.feature-nav {
     display: flex;
-    gap: 5px;
-    margin-bottom: 20px;
+    align-items: center;
+}
+.logo i {
+    margin-right: 10px;
+    color: var(--accent-color);
 }
 
-.nav-btn {
-    width: auto;
-    background-color: #e9ecef;
-    color: var(--text-color);
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-    font-weight: bold;
+.main-nav ul {
+    list-style: none;
+    display: flex;
 }
 
-.nav-btn.active {
-    background-color: var(--info-color);
-    color: white;
-    border-color: var(--info-color);
+.main-nav ul li {
+    margin-left: 30px;
 }
 
-.nav-btn:hover {
-    background-color: #ced4da;
-    color: var(--text-color);
+.main-nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05em;
+    padding: 5px 0;
+    position: relative;
 }
 
-.nav-btn.active:hover {
-    background-color: #138496;
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
 }
 
-/* --- Transaction Table --- */
-.statement-table-container {
-    max-height: 350px;
-    overflow-y: auto;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-}
-
-#transaction-table {
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
     width: 100%;
-    border-collapse: collapse;
 }
 
-#transaction-table th, #transaction-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Adjust height as needed */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
 }
 
-#transaction-table th {
-    background-color: var(--primary-color);
-    color: white;
-    position: sticky; /* Keep header visible on scroll */
+.hero-image {
+    position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
 }
 
-.credit {
-    color: var(--success-color);
-    font-weight: bold;
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: -1;
 }
 
-.debit {
-    color: var(--danger-color);
-    font-weight: bold;
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
 }
-
-/* --- Services Panel --- */
-.service-box {
-    border: 1px solid #dee2e6;
-    padding: 20px;
-    border-radius: 5px;
+.hero-content h1 {
+    font-size: 3.8em;
     margin-bottom: 20px;
-    background-color: #fefefe;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-.service-box h4 {
-    color: var(--secondary-color);
-    margin-top: 0;
-    border-bottom: 1px dotted #ccc;
-    padding-bottom: 10px;
-}
-
-/* --- Utility Classes --- */
-.hidden {
-    display: none;
-}
-
-.error-message {
-    color: var(--danger-color);
-    margin-top: 15px;
+/* --- Features Grid --- */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
     text-align: center;
+    margin-top: 40px;
 }
 
-.message {
-    padding: 10px;
-    margin-top: 15px;
-    border-radius: 5px;
+.feature-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-medium);
+}
+.feature-item .icon-large {
+    font-size: 3.5em;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+.feature-item h3 {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+.feature-item p {
+    color: var(--light-text-color);
+}
+
+/* --- Loan Grid --- */
+.loan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.loan-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.loan-card:hover {
+    transform: translateY(-5px);
+}
+.loan-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.loan-card h3 {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.7em;
+}
+.loan-card h3 i {
+    margin-left: 10px;
+    color: var(--accent-color);
+    font-size: 0.8em;
+}
+.loan-card p {
+    padding: 0 20px;
+    margin-bottom: 15px;
+    color: var(--light-text-color);
+}
+.loan-card .interest-rate {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--danger-color); /* To highlight rates */
+    margin-bottom: 20px;
+}
+.loan-card .btn {
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.loan-calculator-promo {
+    background-color: var(--bg-light);
+    border: 1px solid #e0e0e0;
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-light);
+}
+.loan-calculator-promo i {
+    font-size: 2.5em;
+    color: var(--primary-color);
+}
+.loan-calculator-promo span {
+    font-size: 1.3em;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+/* --- Deposit Grid --- */
+.deposit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.deposit-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-medium);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.deposit-card:hover {
+    transform: translateY(-5px);
+}
+.deposit-card h3 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-top: 20px;
+}
+.deposit-card ul.rates-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+    text-align: left;
+    display: inline-block; /* Center the list itself */
+}
+.deposit-card ul.rates-list li {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+.deposit-card ul.rates-list li::before {
+    content: "\2022"; /* Bullet point */
+    color: var(--accent-color);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+.deposit-card .btn {
+    width: 70%;
+    margin-top: 20px;
+}
+
+/* --- Customer Stories Grid --- */
+.customer-stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.story-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+.story-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--primary-color);
+}
+.story-content {
+    padding: 20px;
+    position: relative;
+}
+.story-content h4 {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.story-content p {
     font-size: 0.95em;
+    color: var(--light-text-color);
+    margin-bottom: 15px;
+}
+.story-content .icon-story {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 2em;
+    color: var(--accent-color);
+    opacity: 0.7;
+}
+
+/* --- Contact Section --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    color: var(--white);
+}
+
+.contact-info, .bank-manager {
+    padding: 25px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly translucent white */
+    box-shadow: var(--shadow-light);
+}
+
+.contact-info h3, .bank-manager h3 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+.contact-info p, .bank-manager p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.contact-info p i, .bank-manager p i {
+    margin-right: 10px;
+    color: var(--accent-color);
+    font-size: 1.1em;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+.social-links a {
+    color: var(--white);
+    font-size: 1.5em;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+.manager-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--accent-color);
+}
+.bank-manager h4 {
+    color: var(--white);
+    margin-bottom: 5px;
+}
+.bank-manager p:nth-of-type(1) { /* Manager title */
+    color: var(--accent-color);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.map-placeholder {
+    margin-top: 50px;
     text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+}
+.map-placeholder img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.message.success {
-    background-color: #d4edda;
-    color: #155724;
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9em;
 }
 
-.message.error {
-    background-color: #f8d7da;
-    color: #721c24;
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.footer-links ul li {
+    margin: 0 15px 10px;
+}
+.footer-links ul li a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.8;
+}
+.footer-links ul li a:hover {
+    opacity: 1;
+    color: var(--accent-color);
 }
 
-/* Responsive adjustments */
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .hero-content h1 { font-size: 3em; }
+    .hero-content p { font-size: 1.1em; }
+    .section-title { font-size: 2.2em; }
+}
+
 @media (max-width: 768px) {
-    .summary-grid {
+    .main-nav ul {
         flex-direction: column;
+        display: none; /* Hide nav for mobile, could add a hamburger menu with JS */
     }
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .main-nav ul li { margin: 10px 0; }
+    .main-nav ul li a { padding: 8px 15px; }
+
+    .hero-section { height: 500px; }
+    .hero-content h1 { font-size: 2.5em; }
+    .hero-content p { font-size: 1em; }
+
+    .section-padding { padding: 60px 0; }
+    .feature-grid, .loan-grid, .deposit-grid, .customer-stories-grid, .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .loan-calculator-promo { flex-direction: column; text-align: center; }
+
+    .footer-links ul { flex-direction: column; }
+    .footer-links ul li { margin: 5px 0; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 1.5em; }
+    .hero-content h1 { font-size: 2em; }
+    .hero-content p { font-size: 0.9em; }
+    .btn { padding: 10px 20px; font-size: 0.9em; }
+    .section-title { font-size: 1.8em; }
+    .section-subtitle { font-size: 1em; }
 }

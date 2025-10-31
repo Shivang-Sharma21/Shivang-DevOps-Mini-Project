@@ -3,105 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Bank Pro: Full Management System</title>
+    <title>Great Indian Bank - Your Journey to Prosperity</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="main-header">
-        <h1>Global Bank Pro</h1>
-    </header>
-    <main class="container">
-        <section id="login-section" class="card">
-            <h2>Customer Login</h2>
-            <form id="login-form">
-                <input type="text" id="acc-number" placeholder="Account Number (123456)" required>
-                <input type="password" id="login-password" placeholder="PIN (1111)" required>
-                <button type="submit">Login</button>
-                <p id="login-error" class="error-message"></p>
-            </form>
-        </section>
-
-        <section id="dashboard-section" class="card hidden">
-            <header class="dashboard-header">
-                <h2>Account Dashboard</h2>
-                <button id="logout-btn" class="secondary-btn">Logout</button>
-            </header>
-            
-            <div class="summary-grid">
-                <div class="balance-info">
-                    <h3>Current Balance</h3>
-                    <p id="current-balance">$0.00</p>
-                </div>
-                <div class="account-details">
-                    <h3>Account Info</h3>
-                    <p>Name: <span id="account-name"></span></p>
-                    <p>A/C No: <span id="account-number"></span></p>
-                    <p>Branch: <span id="account-branch"></span></p>
-                </div>
+        <div class="header-content container">
+            <div class="logo">
+                <i class="fas fa-landmark"></i> Great Indian Bank
             </div>
-
-            <nav class="feature-nav">
-                <button class="nav-btn active" data-target="transactions">Statement</button>
-                <button class="nav-btn" data-target="transfer">Fund Transfer</button>
-                <button class="nav-btn" data-target="services">Services</button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#loans">Loans</a></li>
+                    <li><a href="#deposits">Deposits</a></li>
+                    <li><a href="#success-stories">Success Stories</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#" class="btn-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
             </nav>
+        </div>
+    </header>
 
-            <div class="feature-content">
-                <div id="transactions" class="feature-panel active">
-                    <h3>Account Statement</h3>
-                    <div class="statement-table-container">
-                        <table id="transaction-table">
-                            <thead>
-                                <tr><th>Date</th><th>Type</th><th>Amount</th><th>Details</th></tr>
-                            </thead>
-                            <tbody>
-                                </tbody>
-                        </table>
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <img src="https://via.placeholder.com/1920x800/004085/ffffff?text=Great+Indian+Bank+-+Secure+Your+Future" alt="Bank Building" class="hero-image">
+        <div class="hero-content container">
+            <h1>Your Journey to Prosperity Starts Here.</h1>
+            <p>Empowering millions across the nation with trust and innovation.</p>
+            <a href="#loans" class="btn btn-primary">Explore Loans Today <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <section id="features" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Why Choose Great Indian Bank?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt icon-large"></i>
+                    <h3>Secure Banking</h3>
+                    <p>Your assets are protected with state-of-the-art security measures.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-hand-holding-usd icon-large"></i>
+                    <h3>Tailored Solutions</h3>
+                    <p>Personalized financial products designed just for you.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chart-line icon-large"></i>
+                    <h3>Growth Opportunities</h3>
+                    <p>Invest wisely with our expert guidance and high-yield options.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-headset icon-large"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated customer service available round the clock to assist you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="loans" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Our Best Loan Offers</h2>
+            <p class="section-subtitle">Achieve your dreams with Great Indian Bank.</p>
+            <div class="loan-grid">
+                <div class="loan-card">
+                    <img src="https://via.placeholder.com/400x250/0060b0/ffffff?text=Home+Loan" alt="Home Loan" class="loan-image">
+                    <h3>Home Loans <i class="fas fa-home"></i></h3>
+                    <p>Realize your dream home with flexible repayment options.</p>
+                    <div class="interest-rate">Starting @ **7.25%** p.a.</div>
+                    <a href="#" class="btn btn-secondary">Apply Now</a>
+                </div>
+                <div class="loan-card">
+                    <img src="https://via.placeholder.com/400x250/0060b0/ffffff?text=Car+Loan" alt="Car Loan" class="loan-image">
+                    <h3>Car Loans <i class="fas fa-car"></i></h3>
+                    <p>Drive your new car today with easy and affordable car loans.</p>
+                    <div class="interest-rate">Starting @ **8.50%** p.a.</div>
+                    <a href="#" class="btn btn-secondary">Apply Now</a>
+                </div>
+                <div class="loan-card">
+                    <img src="https://via.placeholder.com/400x250/0060b0/ffffff?text=Personal+Loan" alt="Personal Loan" class="loan-image">
+                    <h3>Personal Loans <i class="fas fa-user-friends"></i></h3>
+                    <p>Instant funds for all your personal needs, no collateral required.</p>
+                    <div class="interest-rate">Starting @ **10.00%** p.a.</div>
+                    <a href="#" class="btn btn-secondary">Apply Now</a>
+                </div>
+            </div>
+            <div class="loan-calculator-promo">
+                <i class="fas fa-calculator"></i>
+                <span>Calculate your EMI now!</span>
+                <a href="#" class="btn btn-outline">EMI Calculator</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="deposits" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">Save Smart, Grow Rich.</h2>
+            <p class="section-subtitle">Attractive interest rates on Fixed and Recurring Deposits.</p>
+            <div class="deposit-grid">
+                <div class="deposit-card">
+                    <i class="fas fa-piggy-bank icon-large primary-text"></i>
+                    <h3>Fixed Deposit (FD)</h3>
+                    <p>Guaranteed returns with flexible tenures. High safety and liquidity.</p>
+                    <ul class="rates-list">
+                        <li>**6.5%** p.a. for 1-2 Years</li>
+                        <li>**7.0%** p.a. for 3-5 Years</li>
+                        <li>**7.5%** p.a. for Senior Citizens</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Open FD Online</a>
+                </div>
+                <div class="deposit-card">
+                    <i class="fas fa-hand-holding-dollar icon-large primary-text"></i>
+                    <h3>Recurring Deposit (RD)</h3>
+                    <p>Save small amounts regularly and build a significant corpus.</p>
+                    <ul class="rates-list">
+                        <li>**6.0%** p.a. for 1-2 Years</li>
+                        <li>**6.8%** p.a. for 3-5 Years</li>
+                        <li>**7.3%** p.a. for Senior Citizens</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Open RD Online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="success-stories" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Our Customers, Our Pride</h2>
+            <p class="section-subtitle">Stories of success empowered by Great Indian Bank.</p>
+            <div class="customer-stories-grid">
+                <div class="story-card">
+                    <img src="https://via.placeholder.com/300x200/555/eee?text=Customer+1" alt="Customer 1" class="story-image">
+                    <div class="story-content">
+                        <h4>Ramesh & Priya - Dream Home Owners</h4>
+                        <p>"Great Indian Bank helped us secure our first home loan with incredible ease. We are forever grateful!"</p>
+                        <i class="fas fa-house-user icon-story"></i>
                     </div>
                 </div>
-
-                <div id="transfer" class="feature-panel hidden">
-                    <h3>Fund Transfer (IMPS)</h3>
-                    <form id="transfer-form">
-                        <input type="text" id="recipient-acc" placeholder="Recipient Account Number (e.g., 987654)" required>
-                        <input type="number" id="transfer-amount" placeholder="Amount ($)" min="1" step="0.01" required>
-                        <textarea id="transfer-remark" placeholder="Remark (Optional)"></textarea>
-                        <button type="submit">Transfer Funds</button>
-                        <p id="transfer-msg" class="message"></p>
-                    </form>
-                </div>
-
-                <div id="services" class="feature-panel hidden">
-                    <h3>Account Services</h3>
-                    <div class="service-box">
-                        <h4>Nominee Registration</h4>
-                        <p>Current Nominee: <span id="current-nominee">N/A</span></p>
-                        <form id="nominee-form">
-                            <input type="text" id="nominee-name" placeholder="Nominee Name" required>
-                            <input type="text" id="nominee-relation" placeholder="Relation (e.g., Mother, Spouse)" required>
-                            <button type="submit" class="secondary-btn">Update Nominee</button>
-                            <p id="nominee-msg" class="message"></p>
-                        </form>
+                <div class="story-card">
+                    <img src="https://via.placeholder.com/300x200/555/eee?text=Customer+2" alt="Customer 2" class="story-image">
+                    <div class="story-content">
+                        <h4>Anjali Singh - Entrepreneur Extraordinaire</h4>
+                        <p>"Thanks to a business loan from GIB, I expanded my startup. My new car is just the beginning!"</p>
+                        <i class="fas fa-car-side icon-story"></i>
                     </div>
-                    <div class="service-box">
-                        <h4>Branch Transfer</h4>
-                        <p>Current Branch: <span id="current-branch-display"></span></p>
-                        <form id="branch-transfer-form">
-                            <select id="new-branch" required>
-                                <option value="" disabled selected>Select New Branch</option>
-                                <option value="NY-Central">New York Central</option>
-                                <option value="CA-West">California West</option>
-                                <option value="TX-South">Texas South</option>
-                            </select>
-                            <button type="submit" class="secondary-btn">Request Branch Transfer</button>
-                            <p id="branch-msg" class="message"></p>
-                        </form>
+                </div>
+                <div class="story-card">
+                    <img src="https://via.placeholder.com/300x200/555/eee?text=Customer+3" alt="Customer 3" class="story-image">
+                    <div class="story-content">
+                        <h4>The Kapoor Family - Luxurious Living</h4>
+                        <p>"Our luxury villa was made possible by the seamless process and excellent rates at Great Indian Bank."</p>
+                        <i class="fas fa-building icon-story"></i>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <img src="https://via.placeholder.com/300x200/555/eee?text=Customer+4" alt="Customer 4" class="story-image">
+                    <div class="story-content">
+                        <h4>Vikram & Neha - Adventure Awaits</h4>
+                        <p>"A personal loan helped us buy our dream adventure vehicle. Our travels are now limitless!"</p>
+                        <i class="fas fa-mountain icon-story"></i>
                     </div>
                 </div>
             </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary-outline">Read More Success Stories</a>
+            </div>
+        </div>
+    </section>
 
-        </section>
-    </main>
+    <section id="contact" class="section-padding bg-dark text-white">
+        <div class="container">
+            <h2 class="section-title text-white">Get in Touch with Us</h2>
+            <p class="section-subtitle text-white">Your queries are always welcome.</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Our Main Branch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123, Financial District, New Delhi, India - 110001</p>
+                    <p><i class="fas fa-phone"></i> +91 1800 123 4567</p>
+                    <p><i class="fas fa-envelope"></i> info@greatindianbank.com</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="bank-manager">
+                    <h3>Meet Our Branch Manager</h3>
+                    <img src="https://via.placeholder.com/100x100/555/eee?text=Manager" alt="Branch Manager" class="manager-photo">
+                    <h4>Mr. Rohan Kapoor</h4>
+                    <p>Branch Manager, Financial District</p>
+                    <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> rohan.kapoor@greatindianbank.com</p>
+                </div>
+            </div>
+            <div class="map-placeholder">
+                <img src="https://via.placeholder.com/600x300/ccc/555?text=Map+Placeholder" alt="Branch Location Map">
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">CSR Activities</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <p>&copy; 2025 Great Indian Bank. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
