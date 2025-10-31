@@ -3,51 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Bank Manager</title>
+    <title>Global Bank Pro: Full Management System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="main-header">
+        <h1>Global Bank Pro</h1>
+    </header>
     <main class="container">
         <section id="login-section" class="card">
-            <h2>Bank Login</h2>
+            <h2>Customer Login</h2>
             <form id="login-form">
-                <input type="text" id="username" placeholder="Username (user)" required>
-                <input type="password" id="password" placeholder="Password (pass)" required>
+                <input type="text" id="acc-number" placeholder="Account Number (123456)" required>
+                <input type="password" id="login-password" placeholder="PIN (1111)" required>
                 <button type="submit">Login</button>
                 <p id="login-error" class="error-message"></p>
             </form>
         </section>
 
         <section id="dashboard-section" class="card hidden">
-            <header>
-                <h2>Welcome, <span id="account-name">User</span>!</h2>
+            <header class="dashboard-header">
+                <h2>Account Dashboard</h2>
                 <button id="logout-btn" class="secondary-btn">Logout</button>
             </header>
             
-            <div class="balance-info">
-                <h3>Current Balance</h3>
-                <p id="current-balance">$0.00</p>
+            <div class="summary-grid">
+                <div class="balance-info">
+                    <h3>Current Balance</h3>
+                    <p id="current-balance">$0.00</p>
+                </div>
+                <div class="account-details">
+                    <h3>Account Info</h3>
+                    <p>Name: <span id="account-name"></span></p>
+                    <p>A/C No: <span id="account-number"></span></p>
+                    <p>Branch: <span id="account-branch"></span></p>
+                </div>
             </div>
 
-            <div class="actions">
-                <div class="action-box">
-                    <h3>Deposit Funds</h3>
-                    <form id="deposit-form">
-                        <input type="number" id="deposit-amount" placeholder="Amount" min="0.01" step="0.01" required>
-                        <button type="submit" class="deposit-btn">Deposit</button>
-                        <p id="deposit-msg" class="message"></p>
+            <nav class="feature-nav">
+                <button class="nav-btn active" data-target="transactions">Statement</button>
+                <button class="nav-btn" data-target="transfer">Fund Transfer</button>
+                <button class="nav-btn" data-target="services">Services</button>
+            </nav>
+
+            <div class="feature-content">
+                <div id="transactions" class="feature-panel active">
+                    <h3>Account Statement</h3>
+                    <div class="statement-table-container">
+                        <table id="transaction-table">
+                            <thead>
+                                <tr><th>Date</th><th>Type</th><th>Amount</th><th>Details</th></tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="transfer" class="feature-panel hidden">
+                    <h3>Fund Transfer (IMPS)</h3>
+                    <form id="transfer-form">
+                        <input type="text" id="recipient-acc" placeholder="Recipient Account Number (e.g., 987654)" required>
+                        <input type="number" id="transfer-amount" placeholder="Amount ($)" min="1" step="0.01" required>
+                        <textarea id="transfer-remark" placeholder="Remark (Optional)"></textarea>
+                        <button type="submit">Transfer Funds</button>
+                        <p id="transfer-msg" class="message"></p>
                     </form>
                 </div>
 
-                <div class="action-box">
-                    <h3>Withdraw Funds</h3>
-                    <form id="withdraw-form">
-                        <input type="number" id="withdraw-amount" placeholder="Amount" min="0.01" step="0.01" required>
-                        <button type="submit" class="withdraw-btn">Withdraw</button>
-                        <p id="withdraw-msg" class="message"></p>
-                    </form>
+                <div id="services" class="feature-panel hidden">
+                    <h3>Account Services</h3>
+                    <div class="service-box">
+                        <h4>Nominee Registration</h4>
+                        <p>Current Nominee: <span id="current-nominee">N/A</span></p>
+                        <form id="nominee-form">
+                            <input type="text" id="nominee-name" placeholder="Nominee Name" required>
+                            <input type="text" id="nominee-relation" placeholder="Relation (e.g., Mother, Spouse)" required>
+                            <button type="submit" class="secondary-btn">Update Nominee</button>
+                            <p id="nominee-msg" class="message"></p>
+                        </form>
+                    </div>
+                    <div class="service-box">
+                        <h4>Branch Transfer</h4>
+                        <p>Current Branch: <span id="current-branch-display"></span></p>
+                        <form id="branch-transfer-form">
+                            <select id="new-branch" required>
+                                <option value="" disabled selected>Select New Branch</option>
+                                <option value="NY-Central">New York Central</option>
+                                <option value="CA-West">California West</option>
+                                <option value="TX-South">Texas South</option>
+                            </select>
+                            <button type="submit" class="secondary-btn">Request Branch Transfer</button>
+                            <p id="branch-msg" class="message"></p>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </section>
     </main>
 
